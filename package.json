@@ -3,19 +3,23 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Anastasiia-junior/PinkAdaptive12-2022.git"
   },
+
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Anastasiia-junior/PinkAdaptive12-2022/issues"
   },
+
   "homepage": "https://github.com/Anastasiia-junior/PinkAdaptive12-2022#readme",
   "devDependencies": {
     "gulp": "^4.0.2",
@@ -23,9 +27,11 @@
     "stylelint-config-htmlacademy": "^1.1.4",
     "stylelint-config-standard": "^29.0.0"
   },
+
   "dependencies": {
     "editorconfig": "^1.0.1"
   },
+
   "editorconfig-cli": [
     "*.json",
     "*.js",
