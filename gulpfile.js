@@ -4,6 +4,9 @@ const sourcemap = require("gulp-sourcemaps");
 const sass = require("gulp-sass")(require("sass"));
 const postcss = require("gulp-postcss");
 const autoprefixer = require("autoprefixer");
+const sync = require("browser-sync").create();
+
+//styles
 
 const styles = (cb) => {
     return gulp.src("sourse/sass/style.scss")
@@ -19,3 +22,16 @@ const styles = (cb) => {
   }
 
   exports.styles = styles;
+
+  //Server
+
+  gulp.task("browser-sync", function() {
+    sync.init({
+        server: {
+            baseDir: "sourse"
+        },
+        cors: true,
+        notify: false,
+        ui: false
+    });
+});
