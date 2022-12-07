@@ -1,6 +1,5 @@
-function defaultTask(cb) {
-    // place code for your default task here
-    cb();
+const styles = (cb) => {
+    return gulp.src('sourse/sass/style.scss')
   }
-  
-  exports.default = defaultTask
+
+  exports.default = styles;
