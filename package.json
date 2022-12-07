@@ -22,17 +22,16 @@
   },
   "homepage": "https://github.com/Anastasiia-junior/PinkAdaptive12-2022#readme",
   "devDependencies": {
-    "gulp": "^4.0.2",
-    "gulp-sass": "^5.1.0",
     "editorconfig": "^1.0.1",
+    "gulp": "^4.0.2",
     "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^9.0.1",
+    "gulp-sass": "^5.1.0",
+    "postcss": "^8.4.19",
     "sass": "^1.56.1",
     "stylelint": "^14.16.0",
     "stylelint-config-htmlacademy": "^1.1.4",
     "stylelint-config-standard": "^29.0.0"
-  },
-  "dependencies": {
-
   },
   "editorconfig-cli": [
     "*.json",
@@ -41,5 +40,9 @@
     "source/js/**/*.js",
     "source/img/**/*.svg",
     "source/less/**/*.less"
-  ]
+  ],
+  "dependencies": {
+    "autoprefixer": "^10.4.13",
+    "gulp-sourcemaps": "^3.0.0"
+  }
 }
