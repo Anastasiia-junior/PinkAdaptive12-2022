@@ -6,6 +6,7 @@ const postcss = require("gulp-postcss");
 const autoprefixer = require("autoprefixer");
 const sync = require("browser-sync").create();
 const { watch, series } = require('gulp');
+const csso = require('gulp-csso');
 
 //styles
 
@@ -17,6 +18,7 @@ const styles = (cb) => {
     .pipe(postcss([
       autoprefixer()
     ]) )
+    .pipe(csso())
     .pipe(sourcemap.write("sourse/css"))
     .pipe(gulp.dest("sourse/css"))
 
