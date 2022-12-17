@@ -33,7 +33,7 @@ const styles = (cb) => {
 
   //Server
 
-  gulp.task("browser-sync", function() {
+  const server = (done) => {
     sync.init({
         server: {
             baseDir: "sourse"
@@ -42,8 +42,10 @@ const styles = (cb) => {
         notify: false,
         ui: false
     });
-});
+    done();
+};
 
+exports.server = server;
 
 //Watcher
 
@@ -95,18 +97,23 @@ exports.imagemin = imagemin;
 
 //WebP
 
-gulp.task("default", () => {
+const webp = () => {
   return gulp.src("sourse/img/**/*.{png,jpg")
   .pipe(webp())
   .pipe(gulp.dest("sourse/img"))
-});
+};
+
+exports.webp = webp;
+
 
 //Sprites
 
-gulp.task('svgstore', () => {
+const svgstore = () => {
     return gulp
         .src("sourse/img/**/icon-*.svg")
         .pipe(svgstore())
         .pipe(rename("icon-sprite.svg"))
         .pipe(gulp.dest("sourse/img"));
-});
+};
+
+exports.svgstore = svgstore;
