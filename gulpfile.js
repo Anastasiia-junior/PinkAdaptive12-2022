@@ -85,6 +85,7 @@ const imagemin = () => {
         ]
       })
     ]))
+    .pipe(gulp.dest('sourse/img'))
 }
 
 exports.imagemin = imagemin;
