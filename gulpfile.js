@@ -25,8 +25,8 @@ const styles = (cb) => {
     .pipe(csso())
     .pipe(rename("styles.min.css"))
     .pipe(sourcemap.write("sourse/css"))
-    .pipe(gulp.dest("sourse/css"))
-
+    .pipe(gulp.dest("build/css"))
+    .pipe(sync.stream());
   }
 
   exports.styles = styles;
@@ -36,7 +36,7 @@ const styles = (cb) => {
   const server = (done) => {
     sync.init({
         server: {
-            baseDir: "sourse"
+            baseDir: "build"
         },
         cors: true,
         notify: false,
@@ -47,9 +47,8 @@ const styles = (cb) => {
 
 exports.server = server;
 
+
 //Watcher
-
-
 
 function clean(cb) {
   // body omitted
@@ -61,17 +60,19 @@ function javascript(cb) {
   cb();
 }
 
-function css(cb) {
+function scss(cb) {
   // body omitted
   cb();
 }
 
-exports.default = function() {
+const watcher = () => {
   // You can use a single task
-  watch('src/**/*.css', css);
+  watch('sourse/scss/*.scss', scss);
   // Or a composed task
-  watch('src/*.js', series(clean, javascript));
+  watch('sourse/*.js', series(clean, javascript));
 };
+
+exports.watcher = watcher;
 
 
 //imagemin
@@ -89,7 +90,7 @@ const imagemin = () => {
         ]
       })
     ]))
-    .pipe(gulp.dest('sourse/img'))
+    .pipe(gulp.dest('build/img'))
 }
 
 exports.imagemin = imagemin;
@@ -100,7 +101,7 @@ exports.imagemin = imagemin;
 const webp = () => {
   return gulp.src("sourse/img/**/*.{png,jpg")
   .pipe(webp())
-  .pipe(gulp.dest("sourse/img"))
+  .pipe(gulp.dest("build/img"))
 };
 
 exports.webp = webp;
@@ -113,7 +114,9 @@ const svgstore = () => {
         .src("sourse/img/**/icon-*.svg")
         .pipe(svgstore())
         .pipe(rename("icon-sprite.svg"))
-        .pipe(gulp.dest("sourse/img"));
+        .pipe(gulp.dest("build/img"));
 };
 
 exports.svgstore = svgstore;
+
+
