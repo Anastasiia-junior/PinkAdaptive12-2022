@@ -8,6 +8,7 @@ const sync = require("browser-sync").create();
 const { watch, series } = require('gulp');
 const csso = require('gulp-csso');
 const rename = require("gulp-rename");
+const imagemin = require("gulp-imagemin");
 
 //styles
 
@@ -67,3 +68,23 @@ exports.default = function() {
   // Or a composed task
   watch('src/*.js', series(clean, javascript));
 };
+
+
+//imagemin
+
+const imagemin = () => {
+  return gulp.src("sourse/img/**/*.{jpg, png, svg}")
+    .pipe(imagemin([
+      imagemin.gifsicle({interlaced: true}),
+      imagemin.mozjpeg({quality: 75, progressive: true}),
+      imagemin.optipng({optimizationLevel: 5}),
+      imagemin.svgo({
+        plugins: [
+          {removeViewBox: true},
+          {cleanupIDs: false}
+        ]
+      })
+    ]))
+}
+
+exports.imagemin = imagemin;
