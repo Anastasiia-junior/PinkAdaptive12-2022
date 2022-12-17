@@ -5,6 +5,7 @@ const sass = require("gulp-sass")(require("sass"));
 const postcss = require("gulp-postcss");
 const autoprefixer = require("autoprefixer");
 const sync = require("browser-sync").create();
+const { watch, series } = require('gulp');
 
 //styles
 
@@ -35,3 +36,30 @@ const styles = (cb) => {
         ui: false
     });
 });
+
+
+//Watcher
+
+
+
+function clean(cb) {
+  // body omitted
+  cb();
+}
+
+function javascript(cb) {
+  // body omitted
+  cb();
+}
+
+function css(cb) {
+  // body omitted
+  cb();
+}
+
+exports.default = function() {
+  // You can use a single task
+  watch('src/**/*.css', css);
+  // Or a composed task
+  watch('src/*.js', series(clean, javascript));
+};
