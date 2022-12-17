@@ -7,6 +7,7 @@ const autoprefixer = require("autoprefixer");
 const sync = require("browser-sync").create();
 const { watch, series } = require('gulp');
 const csso = require('gulp-csso');
+const rename = require("gulp-rename");
 
 //styles
 
@@ -19,6 +20,7 @@ const styles = (cb) => {
       autoprefixer()
     ]) )
     .pipe(csso())
+    .pipe(rename("styles.min.css"))
     .pipe(sourcemap.write("sourse/css"))
     .pipe(gulp.dest("sourse/css"))
 
