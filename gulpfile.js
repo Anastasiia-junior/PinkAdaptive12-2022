@@ -9,6 +9,8 @@ const { watch, series } = require('gulp');
 const csso = require('gulp-csso');
 const rename = require("gulp-rename");
 const imagemin = require("gulp-imagemin");
+const webp = require("gulp-webp");
+const svgstore = require('gulp-svgstore');
 
 //styles
 
@@ -89,3 +91,22 @@ const imagemin = () => {
 }
 
 exports.imagemin = imagemin;
+
+
+//WebP
+
+gulp.task("default", () => {
+  return gulp.src("sourse/img/**/*.{png,jpg")
+  .pipe(webp())
+  .pipe(gulp.dest("sourse/img"))
+});
+
+//Sprites
+
+gulp.task('svgstore', () => {
+    return gulp
+        .src("sourse/img/**/icon-*.svg")
+        .pipe(svgstore())
+        .pipe(rename("icon-sprite.svg"))
+        .pipe(gulp.dest("sourse/img"));
+});
