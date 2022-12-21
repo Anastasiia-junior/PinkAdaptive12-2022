@@ -69,7 +69,7 @@ const watcher = () => {
   // You can use a single task
   watch('sourse/scss/*.scss', scss);
   // Or a composed task
-  watch('sourse/*.js', series(clean, javascript));
+  watch('sourse/*.js', javascript);
 };
 
 exports.watcher = watcher;
@@ -120,3 +120,16 @@ const svgstore = () => {
 exports.svgstore = svgstore;
 
 
+const copy = () => {
+  return gulp.src([
+    "sourse/fonts/**/*.{woff,woff2}",
+    "sourse/img/**",
+    "sourse/js/**",
+    "sourse/*.ico"
+  ], {
+    base: "sourse"
+  })
+  .pipe(gulp.dest("build"));
+};
+
+exports.copy = copy;
